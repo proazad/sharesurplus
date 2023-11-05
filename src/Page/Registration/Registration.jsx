@@ -19,7 +19,7 @@ const Registration = () => {
     <div className="my-10 grid items-center justify-center grid-cols-1 md:grid-cols-2">
       <div className="flex items-center justify-center relative">
         <img src={bg} alt="" className="animate-pulse" draggable="false" />
-        <p className="absolute bottom-0">
+        <p className="absolute bottom-0 animate-bounce">
           Already have an account, <Link to="/signin">Please Sign in</Link>
         </p>
       </div>
