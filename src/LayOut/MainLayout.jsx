@@ -1,7 +1,18 @@
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/a.png";
+import useAuth from "../Hooks/useAuth";
 const MainLayout = () => {
+  const { user ,userLogOut} = useAuth();
+  const handleUserLogOut = () => {
+    userLogOut()
+    .then(()=>{
+      console.log("Successfully Sign Out");
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
   const navlinks = (
     <>
       <li>
@@ -30,9 +41,13 @@ const MainLayout = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/signin" className="text-base ">
-          Signin
-        </NavLink>
+        {user ? (
+          <span onClick={handleUserLogOut} className="text-base">LogOut</span>
+        ) : (
+          <NavLink to="/signin" className="text-base ">
+            Signin
+          </NavLink>
+        )}
       </li>
     </>
   );

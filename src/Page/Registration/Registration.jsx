@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import useAuth from "../../Hooks/useAuth";
 import bg from "../../assets/asda.webp";
-import { Link } from "react-router-dom";
+import axios from "axios";
 const Registration = () => {
   document.title = "sharesurplus | Registration";
   const [showpass, setShowPass] = useState(false);
+  const { registration, profileUpdate } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = new FormData(event.target);
@@ -13,7 +19,36 @@ const Registration = () => {
     const email = form.get("email").trim();
     const password = form.get("password").trim();
     const confirmpassword = form.get("confirmpassword").trim();
-    const user = { name, photo, email, password, confirmpassword };
+    const user = { name, photo, email, password};
+    const regx = /^(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]).+$/;
+    if (password.length < 6) {
+      return swal("Oops!", "Password Must be 6 character or Long", "error");
+    } else if (password !== confirmpassword) {
+      return swal("Oops!", "Password Not Matched!", "error");
+    } else if (!/[A-Z]/.test(password)) {
+      return swal("Oops!", "Password Must have atlest 1 Uppercase!", "error");
+    } else if (!regx.test(password)) {
+      return swal(
+        "Oops!",
+        "Password Must have at lest 1 special character!",
+        "error"
+      );
+    } else {
+      registration(email, password)
+        .then((res) => {
+          profileUpdate(name, photo);
+          axios.post("http://localhost:5000/user", user).then((res) => {
+            if (res) {
+              console.log(res.data);
+              navigate(location?.state ? location?.state : "/");
+            }
+          });
+          swal("wow!", `Registration Successfull ${res.user.email}`, "success");
+        })
+        .catch((error) => {
+          swal("Opps", "Something went wrong please try again later", "error");
+        });
+    }
   };
   return (
     <div className="my-10 grid items-center justify-center grid-cols-1 md:grid-cols-2">
@@ -36,6 +71,7 @@ const Registration = () => {
               id="name"
               placeholder="Enter you name"
               className="input input-bordered input-error w-full"
+              required
             />
           </div>
 
@@ -49,6 +85,7 @@ const Registration = () => {
               id="photo"
               placeholder="Enter you photo url"
               className="input input-bordered input-error w-full"
+              required
             />
           </div>
 
@@ -62,6 +99,7 @@ const Registration = () => {
               id="email"
               placeholder="Enter your email"
               className="input input-bordered input-error w-full"
+              required
             />
           </div>
           <div className="form-control relative">
@@ -74,6 +112,7 @@ const Registration = () => {
               id="password"
               placeholder="Enter a new password"
               className="input input-bordered input-error w-full"
+              required
             />
             <p
               onClick={() => setShowPass(!showpass)}
@@ -92,6 +131,7 @@ const Registration = () => {
               id="confirmpassword"
               placeholder="Confirm password"
               className="input input-bordered input-error w-full"
+              required
             />
             <p
               onClick={() => setShowPass(!showpass)}

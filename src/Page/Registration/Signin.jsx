@@ -2,18 +2,23 @@ import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import bg from "../../assets/asda.webp";
+import useAuth from "../../Hooks/useAuth";
 const Signin = () => {
   document.title = "sharesurplus | Signin";
+  const { loginUser } = useAuth();
   const [showpass, setShowPass] = useState(false);
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = new FormData(event.target);
-    const name = form.get("name").trim();
-    const photo = form.get("photo").trim();
     const email = form.get("email").trim();
     const password = form.get("password").trim();
-    const confirmpassword = form.get("confirmpassword").trim();
-    const user = { name, photo, email, password, confirmpassword };
+    loginUser(email, password)
+      .then((res) => {
+        console.log("Successfully Sign in ", res.user.email);
+      })
+      .catch((error) => {
+        console.log("Something Went Wrong", error.message);
+      });
   };
   return (
     <div className="my-10 grid items-center justify-center grid-cols-1 md:grid-cols-2">
