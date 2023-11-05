@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import useAuth from "../../Hooks/useAuth";
 import bg from "../../assets/asda.webp";
 import axios from "axios";
+import SocialSignIn from "../../Components/SocialSignIn/SocialSignIn";
 const Registration = () => {
   document.title = "sharesurplus | Registration";
   const [showpass, setShowPass] = useState(false);
@@ -19,7 +20,7 @@ const Registration = () => {
     const email = form.get("email").trim();
     const password = form.get("password").trim();
     const confirmpassword = form.get("confirmpassword").trim();
-    const user = { name, photo, email, password};
+    const user = { name, photo, email, password };
     const regx = /^(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]).+$/;
     if (password.length < 6) {
       return swal("Oops!", "Password Must be 6 character or Long", "error");
@@ -54,9 +55,6 @@ const Registration = () => {
     <div className="my-10 grid items-center justify-center grid-cols-1 md:grid-cols-2">
       <div className="flex items-center justify-center relative">
         <img src={bg} alt="" className="animate-pulse" draggable="false" />
-        <p className="absolute bottom-0 animate-bounce">
-          Already have an account, <Link to="/signin">Please Sign in</Link>
-        </p>
       </div>
       <div className="px-4 lg:px-16">
         <h1 className="logo text-3xl text-center">Please Sign up</h1>
@@ -142,6 +140,15 @@ const Registration = () => {
           </div>
           <div className="form-control mt-5">
             <input type="submit" className="btn btn-error" value="submit" />
+          </div>
+          <div className="from-control mt-5">
+            <p className="text-center">
+              Already have an account,{" "}
+              <Link to="/signin" className="text-blue-600">
+                Please Sign in
+              </Link>
+              <SocialSignIn />
+            </p>
           </div>
         </form>
       </div>
