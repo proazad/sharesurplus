@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import avater from "../../assets/azad.jpg";
 import PropTypes from "prop-types";
 const FeaturedFood = ({ food }) => {
@@ -39,9 +40,11 @@ const FeaturedFood = ({ food }) => {
             amet consectetur adipisicing elit. Odit, saepe.
           </h2>
         </div>
-        <button className="btn bg-orange-500 text-white hover:text-orange-600">
-          View Details
-        </button>
+        <Link to="/food/:id">
+          <button className="btn bg-orange-500 text-white hover:text-orange-600">
+            View Details
+          </button>
+        </Link>
       </div>
     </div>
   );
