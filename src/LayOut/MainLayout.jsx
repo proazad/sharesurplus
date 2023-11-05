@@ -3,16 +3,16 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/a.png";
 import useAuth from "../Hooks/useAuth";
 const MainLayout = () => {
-  const { user ,userLogOut} = useAuth();
+  const { user, userLogOut } = useAuth();
   const handleUserLogOut = () => {
     userLogOut()
-    .then(()=>{
-      console.log("Successfully Sign Out");
-    })
-    .catch((error)=>{
-      console.log(error);
-    })
-  }
+      .then(() => {
+        console.log("Successfully Sign Out");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const navlinks = (
     <>
       <li>
@@ -42,7 +42,9 @@ const MainLayout = () => {
       </li>
       <li>
         {user ? (
-          <span onClick={handleUserLogOut} className="text-base">LogOut</span>
+          <span onClick={handleUserLogOut} className="text-base">
+            LogOut
+          </span>
         ) : (
           <NavLink to="/signin" className="text-base ">
             Signin
@@ -88,6 +90,51 @@ const MainLayout = () => {
         <div className="container mx-auto">
           <Outlet />
         </div>
+        <footer className="footer p-10 bg-base-200 text-base-content">
+          <aside>
+            <Link
+              to="/"
+              className="flex  items-center select-none cursor-pointer"
+            >
+              <span className="logo text-2xl font-bold">shareSurplus </span>
+              <img src={logo} alt="" className="w-12" draggable="false" />
+            </Link>
+            <p>
+              ShareSurplus.org
+              <br />
+              Empowering Communities, One Donation at a Time
+            </p>
+            <address>
+              Level-4, 34, Awal Centre, Banani, Dhaka <br /> <b>Support:</b>
+              web@programming-hero.com <br /> <b>Helpline:</b> 01322901105 <br /> (Available : Sat -
+              Thu, 10:00 AM to 7:00 PM)
+            </address>
+          </aside>
+          <nav>
+            <header className="footer-title">Services</header>
+            <Link to="/" className="link link-hover">
+              Home
+            </Link>
+            <a className="link link-hover">Available Foods</a>
+            <a className="link link-hover">Add Food</a>
+            <a className="link link-hover">Manage My Food</a>
+            <a className="link link-hover">My Food Request</a>
+            <a className="link link-hover">Signin/Signup</a>
+          </nav>
+          <nav>
+            <header className="footer-title">Organization</header>
+            <a className="link link-hover">About us</a>
+            <a className="link link-hover">Contact</a>
+            <a className="link link-hover">Jobs</a>
+            <a className="link link-hover">Press kit</a>
+          </nav>
+          <nav>
+            <header className="footer-title">Legal</header>
+            <a className="link link-hover">Terms of use</a>
+            <a className="link link-hover">Privacy policy</a>
+            <a className="link link-hover">Cookie policy</a>
+          </nav>
+        </footer>
       </div>
       <div className="drawer-side">
         <label

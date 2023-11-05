@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import bg from "../../assets/asda.webp";
 import useAuth from "../../Hooks/useAuth";
 const Signin = () => {
   document.title = "sharesurplus | Signin";
   const { loginUser } = useAuth();
   const [showpass, setShowPass] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = new FormData(event.target);
@@ -15,6 +17,7 @@ const Signin = () => {
     loginUser(email, password)
       .then((res) => {
         console.log("Successfully Sign in ", res.user.email);
+        navigate(location?.state ? location?.state : "/");
       })
       .catch((error) => {
         console.log("Something Went Wrong", error.message);
