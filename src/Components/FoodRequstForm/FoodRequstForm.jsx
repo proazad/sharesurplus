@@ -14,13 +14,13 @@ const FoodRequstForm = ({ food }) => {
     const form = new FormData(event.target);
     const additionalnotes = form.get("additionalnotes");
     const donationmoney = form.get("donationmoney");
-
     const foodRequest = {
       foodid: food._id,
       foodname: food.foodname,
       foodimage: food.foodimage,
       donoremail: food.donoremail,
       donorname: food.donorname,
+      foodstatus: food.foodstatus,
       useremail: user.email,
       username: user.displayName,
       pickuplocation: food.pickuplocation,
