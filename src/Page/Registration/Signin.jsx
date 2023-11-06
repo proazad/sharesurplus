@@ -3,6 +3,7 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import bg from "../../assets/asda.webp";
 import useAuth from "../../Hooks/useAuth";
+import SocialSignIn from "../../Components/SocialSignIn/SocialSignIn";
 const Signin = () => {
   document.title = "sharesurplus | Signin";
   const { loginUser } = useAuth();
@@ -27,9 +28,6 @@ const Signin = () => {
     <div className="my-10 grid items-center justify-center grid-cols-1 md:grid-cols-2">
       <div className="flex items-center justify-center relative">
         <img src={bg} alt="" className="animate-pulse" draggable="false" />
-        <p className="absolute bottom-0 animate-bounce">
-          Don&apos;t have account, <Link to="/signup">Please Sign Up</Link>
-        </p>
       </div>
       <div className="px-4 lg:px-16">
         <h1 className="logo text-3xl text-center">Please Sign in</h1>
@@ -66,6 +64,12 @@ const Signin = () => {
           </div>
           <div className="form-control mt-5">
             <input type="submit" className="btn btn-error" value="Signin" />
+          </div>
+          <div className="from-control mt-5">
+            <p className="text-center">
+              Don&apos;t have account, <Link to="/signup">Please Sign Up</Link>
+              <SocialSignIn />
+            </p>
           </div>
         </form>
       </div>

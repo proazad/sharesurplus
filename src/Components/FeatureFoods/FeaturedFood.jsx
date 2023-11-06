@@ -10,7 +10,6 @@ const FeaturedFood = ({ food }) => {
     pickuplocation,
     expiredate,
     additionalnotes,
-    foodstatus,
   } = food;
   return (
     <div className="shadow p-3 rounded-lg">
@@ -49,7 +48,7 @@ const FeaturedFood = ({ food }) => {
             <span className="font-medium">Note:</span> {additionalnotes}
           </h2>
         </div>
-        <Link to={`/food/${_id}`}>
+        <Link to={`/foods/${_id}`}>
           <button className="btn bg-orange-500 text-white hover:text-orange-600">
             View Details
           </button>

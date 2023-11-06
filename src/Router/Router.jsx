@@ -42,12 +42,15 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/food/:id",
+        path: "/foods/:id",
         element: (
           <PrivateRouter>
             <SingleFoodView />
           </PrivateRouter>
         ),
+        loader: ({ params }) => {
+          return fetch(`http://localhost:5000/foods/${params.id}`);
+        },
       },
       {
         path: "/food-request",

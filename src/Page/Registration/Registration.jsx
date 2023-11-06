@@ -46,7 +46,7 @@ const Registration = () => {
           });
           swal("wow!", `Registration Successfull ${res.user.email}`, "success");
         })
-        .catch((error) => {
+        .catch(() => {
           swal("Opps", "Something went wrong please try again later", "error");
         });
     }

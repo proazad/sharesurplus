@@ -1,36 +1,39 @@
-// import axios from "axios";
-// import { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import swal from "sweetalert";
-// import useAuth from "./useAuth";
+import axios from "axios";
+import { useEffect } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import useAuth from "./useAuth";
 
-// const axiosSecure = axios.create({
-//   baseURL: "http://localhost:5000",
-//   withCredentials: true,
-// });
-// const useAxiosSecure = () => {
-//   const { userLogOut } = useAuth();
-//   const navigate = useNavigate();
-//   useEffect(() => {
-//     axios.interceptors.response.use(
-//       (res) => {
-//         return res;
-//       },
-//       (error) => {
-//         if (error.response.status === 401 || error.response.status === 403) {
-//           swal("Logout the user", "success");
-//           userLogOut()
-//             .then(() => {
-//               navigate("/login");
-//             })
-//             .catch((error) => {
-//               swal(error.message, "error");
-//             });
-//         }
-//       }
-//     );
-//   }, [navigate,userLogOut]);
-//   return axiosSecure;
-// };
+const axiosSecure = axios.create({
+  baseURL: "http://localhost:5000",
+  withCredentials: true,
+});
+const useAxiosSecure = () => {
+  const { userLogOut } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    axiosSecure.interceptors.response.use(
+      (res) => {
+        return res;
+      },
+      (error) => {
+        if (error.response.status === 401 || error.response.status === 403) {
+          userLogOut().then(() => {
+            return (
+              <Navigate
+                state={location.pathname}
+                to="/signin"
+                replace
+              ></Navigate>
+            );
+          });
+          swal("Sorry!", "Your Session Expired, Please Sign in ", "success");
+        }
+      }
+    );
+  }, [navigate, userLogOut, location.pathname]);
+  return axiosSecure;
+};
 
-// export default useAxiosSecure;
+export default useAxiosSecure;

@@ -1,10 +1,11 @@
-import axios from "axios";
-import useAuth from "../../Hooks/useAuth";
-import img from "../../assets/asda.webp";
 import swal from "sweetalert";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import img from "../../assets/asda.webp";
 const AddFood = () => {
   document.title = "shareSurplus | Add Food";
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const handleAddNewFood = (event) => {
     event.preventDefault();
     const form = new FormData(event.target);
@@ -31,16 +32,16 @@ const AddFood = () => {
       additionalnotes,
       foodstatus,
     };
-    console.log(food);
-    axios
-      .post("http://localhost:5000/foods", food)
+    axiosSecure
+      .post("/foods", food)
       .then((res) => {
         if (res.data.insertedId) {
           swal("Wow!", "You Add a New Food Successfully!", "success");
         }
+        event.target.reset();
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        swal("Opps!", "Some thing went wrong Please Try Again!", "error");
       });
   };
   return (

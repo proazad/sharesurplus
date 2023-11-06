@@ -1,19 +1,9 @@
-import axios from "axios";
-import { useState } from "react";
-import swal from "sweetalert";
 import FeaturedFood from "../../Components/FeatureFoods/FeaturedFood";
+import useFoods from "../../Hooks/useFoods";
 
 const AvailableFood = () => {
   document.title = "shareSurplus | Available Food";
-  const [foods, setFoods] = useState([]);
-  axios
-    .get("http://localhost:5000/foods")
-    .then((res) => {
-      setFoods(res.data);
-    })
-    .catch((error) => {
-      swal("error", "Food not found", "error");
-    });
+  const foods = useFoods();
   return (
     <div className="my-5">
       <h1 className="text-3xl logo">Available Food: {foods.length}</h1>
