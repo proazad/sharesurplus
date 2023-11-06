@@ -45,12 +45,12 @@ const SocialSignIn = () => {
     <div>
       {/* <h3 className="text-2xl text-center"> </h3> */}
       <div className="divider logo">Continue with</div>
-      <p className="flex items-center justify-center my-3 gap-5 text-3xl">
+      <div className="flex items-center justify-center my-3 gap-5 text-3xl">
         <FcGoogle onClick={handleGoogleSingIn} className="cursor-pointer" />
         <FaGithub onClick={handleGithubSignIn} className="cursor-pointer" />
         <FaFacebook onClick={handleFacebookSignIn} className="text-blue-500" />
         <BsInstagram onClick={handleInstagramSignIn} className="text-red-500" />
-      </p>
+      </div>
     </div>
   );
 };

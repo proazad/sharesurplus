@@ -66,10 +66,10 @@ const Signin = () => {
             <input type="submit" className="btn btn-error" value="Signin" />
           </div>
           <div className="from-control mt-5">
-            <p className="text-center">
+            <div className="text-center">
               Don&apos;t have account, <Link to="/signup">Please Sign Up</Link>
               <SocialSignIn />
-            </p>
+            </div>
           </div>
         </form>
       </div>

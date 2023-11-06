@@ -1,11 +1,14 @@
 import { useLoaderData } from "react-router-dom";
 import FoodRequstForm from "../../Components/FoodRequstForm/FoodRequstForm";
+import useAuth from "../../Hooks/useAuth";
 const SingleFoodView = () => {
   const loadedFood = useLoaderData();
+  const { user } = useAuth();
   const {
     foodname,
     foodimage,
     donorname,
+    donoremail,
     donorimage,
     pickuplocation,
     expiredate,
@@ -63,18 +66,22 @@ const SingleFoodView = () => {
         </button>
       </div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
-
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              <span className="text-2xl">✕</span>
-            </button>
-          </form>
-          <h3 className="font-bold text-lg">Food Request Form</h3>
-          <FoodRequstForm food={loadedFood} />
-        </div>
-      </dialog>
+      {donoremail === user.email ? (
+        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                <span className="text-2xl">✕</span>
+              </button>
+            </form>
+            <h3 className="font-bold text-lg">
+              Sorry! You Can&apos;t Request for this food, this is your Food
+            </h3>
+          </div>
+        </dialog>
+      ) : (
+        <FoodRequstForm food={loadedFood} />
+      )}
     </div>
   );
 };
