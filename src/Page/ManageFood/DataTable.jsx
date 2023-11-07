@@ -3,7 +3,7 @@ import { AiOutlineDelete, AiOutlineFundView } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const DataTable = ({ foods }) => {
+const DataTable = ({ foods, handleFoodDelete }) => {
   return (
     <table className="table table-zebra lg:table-lg">
       <thead>
@@ -31,7 +31,10 @@ const DataTable = ({ foods }) => {
             <td>{food.expiredate}</td>
             <td>{food?.foodstatus}</td>
             <td className="flex gap-4">
-              <button className="btn btn-sm btn-outline btn-error" title="View">
+              <button
+                className="btn btn-sm btn-outline btn-error"
+                title="Manage Foods"
+              >
                 <AiOutlineFundView className="text-2xl" />
               </button>
               <Link
@@ -44,6 +47,7 @@ const DataTable = ({ foods }) => {
               <button
                 className="btn btn-sm btn-outline btn-error"
                 title="Delete"
+                onClick={() => handleFoodDelete(food._id)}
               >
                 <AiOutlineDelete className="text-2xl" />
               </button>
@@ -58,4 +62,5 @@ const DataTable = ({ foods }) => {
 export default DataTable;
 DataTable.propTypes = {
   foods: PropTypes.array,
+  handleFoodDelete: PropTypes.func,
 };
