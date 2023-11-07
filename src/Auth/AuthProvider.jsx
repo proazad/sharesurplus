@@ -62,13 +62,13 @@ const AuthProvider = ({ children }) => {
       const loggeduser = { email: userEmail };
       if (currentUser) {
         axios
-          .post("https://sharesurplus-server.vercel.app/jwt", loggeduser, {
+          .post("http://localhost:5000/jwt", loggeduser, {
             withCredentials: true,
           })
           .then((res) => console.log(res.data));
       } else {
         axios
-          .post("https://sharesurplus-server.vercel.app/logout", loggeduser, {
+          .post("http://localhost:5000/logout", loggeduser, {
             withCredentials: true,
           })
           .then((res) => {

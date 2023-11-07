@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import UpdateFood from "../Components/UpdateFood.jsx/UpdateFood";
 import Error404 from "../LayOut/Error404";
 import MainLayout from "../LayOut/MainLayout";
 import AddFood from "../Page/AddFood/AddFood";
@@ -41,6 +42,19 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/foodupdate/:id",
+        element: (
+          <PrivateRouter>
+            <UpdateFood />
+          </PrivateRouter>
+        ),
+        loader: ({ params }) => {
+          return fetch(
+            `http://localhost:5000/foods/${params.id}`
+          );
+        },
+      },
+      {
         path: "/foods/:id",
         element: (
           <PrivateRouter>
@@ -49,7 +63,7 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) => {
           return fetch(
-            `https://sharesurplus-server.vercel.app/foods/${params.id}`
+            `http://localhost:5000/foods/${params.id}`
           );
         },
       },
