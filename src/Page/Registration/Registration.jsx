@@ -2,14 +2,15 @@ import { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import useAuth from "../../Hooks/useAuth";
-import bg from "../../assets/asda.webp";
-import axios from "axios";
 import SocialSignIn from "../../Components/SocialSignIn/SocialSignIn";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import bg from "../../assets/asda.webp";
 const Registration = () => {
   document.title = "sharesurplus | Registration";
   const [showpass, setShowPass] = useState(false);
   const { registration, profileUpdate } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
   const handleSignUp = (event) => {
@@ -38,16 +39,15 @@ const Registration = () => {
       registration(email, password)
         .then((res) => {
           profileUpdate(name, photo);
-          axios.post("http://localhost:5000/user", user).then((res) => {
-            if (res) {
-              console.log(res.data);
+          axiosSecure.post("/users", user).then((res) => {
+            if (res.data.insertedId) {
               navigate(location?.state ? location?.state : "/");
             }
           });
           swal("wow!", `Registration Successfull ${res.user.email}`, "success");
         })
         .catch(() => {
-          swal("Opps", "Something went wrong please try again later", "error");
+          swal("Opps", "Something went wrong! User Exist", "error");
         });
     }
   };
@@ -142,13 +142,13 @@ const Registration = () => {
             <input type="submit" className="btn btn-error" value="submit" />
           </div>
           <div className="from-control mt-5">
-            <p className="text-center">
+            <div className="text-center">
               Already have an account,{" "}
               <Link to="/signin" className="text-blue-600">
                 Please Sign in
               </Link>
               <SocialSignIn />
-            </p>
+            </div>
           </div>
         </form>
       </div>

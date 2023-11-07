@@ -1,14 +1,18 @@
-import { Link } from "react-router-dom";
-import FeaturedFood from "./FeaturedFood";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import FeaturedFood from "./FeaturedFood";
 const FeatureFoods = () => {
+  const axiosSecure = useAxiosSecure();
   const [featuredFoods, setFeaturedFoods] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/foods").then((res) => {
-      setFeaturedFoods(res.data);
+    axiosSecure.get("/foods").then((res) => {
+      // const fiterbyFoodQuantity = res.data.sort(
+      //   (item1, item2) => item1.foodquantity - item2.foodquantity
+      // );
+      setFeaturedFoods(res.data.slice(0, 6));
     });
-  }, []);
+  }, [axiosSecure]);
   return (
     <div>
       <h2 className="text-3xl font-bold text-orange-600 logo">Featured Food</h2>

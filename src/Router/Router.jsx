@@ -8,9 +8,8 @@ import ManageFood from "../Page/ManageFood/ManageFood";
 import MyFoodRequest from "../Page/MyFoodRequest/MyFoodRequest";
 import Registration from "../Page/Registration/Registration";
 import Signin from "../Page/Registration/Signin";
-import PrivateRouter from "./PrivateRouter";
 import SingleFoodView from "../Page/SingleFoodView/SingleFoodView";
-
+import PrivateRouter from "./PrivateRouter";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,7 +48,9 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/foods/${params.id}`);
+          return fetch(
+            `https://sharesurplus-server.vercel.app/foods/${params.id}`
+          );
         },
       },
       {

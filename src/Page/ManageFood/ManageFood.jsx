@@ -19,7 +19,7 @@ const ManageFood = () => {
       <h1 className="text-4xl">Manage My Foods:{foods.length}</h1>
       {foods.length === 0 ? (
         <div className="flex h-96 w-full items-center justify-center">
-          <span className="loading loading-lg loading-spinner text-secondary"></span>
+          <h2 className="text-2xl">No Data Found!</h2>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-5">

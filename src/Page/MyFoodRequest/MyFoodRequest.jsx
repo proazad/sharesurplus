@@ -71,7 +71,7 @@ const MyFoodRequest = () => {
         <div className="overflow-x-auto">
           {foods.length === 0 ? (
             <div className="flex h-96 w-full items-center justify-center">
-              <span className="loading loading-lg loading-spinner text-secondary"></span>
+              <h2 className="text-2xl">No Data Found!</h2>
             </div>
           ) : (
             <table className="table-sm table-zebra lg:table-lg">
