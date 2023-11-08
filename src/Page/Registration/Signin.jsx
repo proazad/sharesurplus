@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import bg from "../../assets/asda.webp";
 import useAuth from "../../Hooks/useAuth";
 import SocialSignIn from "../../Components/SocialSignIn/SocialSignIn";
+import swal from "sweetalert";
 const Signin = () => {
   document.title = "sharesurplus | Signin";
   const { loginUser } = useAuth();
@@ -17,11 +18,21 @@ const Signin = () => {
     const password = form.get("password").trim();
     loginUser(email, password)
       .then((res) => {
-        console.log("Successfully Sign in ", res.user.email);
+        swal(
+          `Hello Mr/Mrs. ${res.user.displayName}`,
+          `Successfully Sign in ${res.user.email}`,
+          "success"
+        );
         navigate(location?.state ? location?.state : "/");
       })
       .catch((error) => {
-        console.log("Something Went Wrong", error.message);
+        if (error.message) {
+          swal(
+            "Opps!",
+            "Something Went Wrong, Invalid User Credensials",
+            "error"
+          );
+        }
       });
   };
   return (
@@ -42,6 +53,7 @@ const Signin = () => {
               id="email"
               placeholder="Enter your email"
               className="input input-bordered input-error w-full"
+              required
             />
           </div>
           <div className="form-control relative">
@@ -54,6 +66,7 @@ const Signin = () => {
               id="password"
               placeholder="Enter a new password"
               className="input input-bordered input-error w-full"
+              required
             />
             <p
               onClick={() => setShowPass(!showpass)}

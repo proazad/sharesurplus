@@ -15,7 +15,9 @@ const FeatureFoods = () => {
   }, [axiosSecure]);
   return (
     <div>
-      <h2 className="text-3xl font-bold text-orange-600 logo">Featured Food</h2>
+      <h2 className="text-3xl font-bold text-orange-600 logo px-2 lg:px-0 text-center lg:text-left">
+        Featured Food
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 my-5">
         {featuredFoods?.map((food) => (
           <FeaturedFood key={food._id} food={food} />

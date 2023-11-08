@@ -6,6 +6,7 @@ import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 const FoodRequstForm = ({ food }) => {
   const { user } = useAuth();
+  console.log(user);
   const currentDateTime = useCurrentDateTime();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const FoodRequstForm = ({ food }) => {
       foodstatus: food.foodstatus,
       useremail: user.email,
       username: user.displayName,
+      userimage: user.photoURL,
       pickuplocation: food.pickuplocation,
       expiredate: food.expiredate,
       requesttime: currentDateTime,

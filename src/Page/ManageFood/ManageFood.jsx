@@ -19,7 +19,7 @@ const ManageFood = () => {
   const handleFoodDelete = (id) => {
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      text: "Once deleted, you will not be able to recover this Food!",
       icon: "warning",
       buttons: true,
       dangerMode: true,

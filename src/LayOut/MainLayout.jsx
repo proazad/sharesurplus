@@ -106,8 +106,8 @@ const MainLayout = () => {
             </p>
             <address>
               Level-4, 34, Awal Centre, Banani, Dhaka <br /> <b>Support:</b>
-              web@programming-hero.com <br /> <b>Helpline:</b> 01322901105 <br /> (Available : Sat -
-              Thu, 10:00 AM to 7:00 PM)
+              web@programming-hero.com <br /> <b>Helpline:</b> 01322901105{" "}
+              <br /> (Available : Sat - Thu, 10:00 AM to 7:00 PM)
             </address>
           </aside>
           <nav>
@@ -115,11 +115,21 @@ const MainLayout = () => {
             <Link to="/" className="link link-hover">
               Home
             </Link>
-            <a className="link link-hover">Available Foods</a>
-            <a className="link link-hover">Add Food</a>
-            <a className="link link-hover">Manage My Food</a>
-            <a className="link link-hover">My Food Request</a>
-            <a className="link link-hover">Signin/Signup</a>
+            <Link to="/available-food" className="link link-hover">
+              Available Foods
+            </Link>
+            <Link to="/add-food" className="link link-hover">
+              Add Food
+            </Link>
+            <Link to="/manage-food" className="link link-hover">
+              Manage My Food
+            </Link>
+            <Link to="/food-request" className="link link-hover">
+              My Food Request
+            </Link>
+            <Link to="/signin" className="link link-hover">
+              Signin/Signup
+            </Link>
           </nav>
           <nav>
             <header className="footer-title">Organization</header>

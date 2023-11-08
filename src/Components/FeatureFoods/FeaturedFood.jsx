@@ -10,15 +10,22 @@ const FeaturedFood = ({ food }) => {
     pickuplocation,
     expiredate,
     additionalnotes,
+    foodstatus,
   } = food;
   return (
     <div className="shadow p-3 rounded-lg">
-      <img
-        src={foodimage}
-        alt={foodname}
-        className="rounded-lg h-80 w-full"
-        draggable="false"
-      />
+      <div className="relative">
+        <img
+          src={foodimage}
+          alt={foodname}
+          className="rounded-lg h-70 lg:h-80 w-full"
+          draggable="false"
+        />
+        <span className="absolute top-2 right-5  px-2 py-1 capitalize bg-orange-500 text-white">
+          {foodstatus}
+        </span>
+      </div>
+
       <h2 className="text-2xl my-2 logo">{foodname}</h2>
       <div className="flex gap-5 items-center">
         <div className="avatar online ">

@@ -6,6 +6,7 @@ import AddFood from "../Page/AddFood/AddFood";
 import AvailableFood from "../Page/AvailableFood/AvailableFood";
 import Home from "../Page/Home/Home";
 import ManageFood from "../Page/ManageFood/ManageFood";
+import ManageSingleFood from "../Page/MangeSingleFood/ManageSingleFood";
 import MyFoodRequest from "../Page/MyFoodRequest/MyFoodRequest";
 import Registration from "../Page/Registration/Registration";
 import Signin from "../Page/Registration/Signin";
@@ -49,9 +50,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) => {
-          return fetch(
-            `http://localhost:5000/foods/${params.id}`
-          );
+          return fetch(`http://localhost:5000/foods/${params.id}`);
         },
       },
       {
@@ -62,9 +61,18 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) => {
-          return fetch(
-            `http://localhost:5000/foods/${params.id}`
-          );
+          return fetch(`http://localhost:5000/foods/${params.id}`);
+        },
+      },
+      {
+        path: "/manage/:id",
+        element: (
+          <PrivateRouter>
+            <ManageSingleFood />
+          </PrivateRouter>
+        ),
+        loader: ({ params }) => {
+          return fetch(`http://localhost:5000/rqFoods/${params.id}`);
         },
       },
       {

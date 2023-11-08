@@ -31,12 +31,13 @@ const DataTable = ({ foods, handleFoodDelete }) => {
             <td>{food.expiredate}</td>
             <td>{food?.foodstatus}</td>
             <td className="flex gap-4">
-              <button
+              <Link
+                to={`/manage/${food._id}`}
                 className="btn btn-sm btn-outline btn-error"
                 title="Manage Foods"
               >
                 <AiOutlineFundView className="text-2xl" />
-              </button>
+              </Link>
               <Link
                 to={`/foodupdate/${food._id}`}
                 className="btn btn-sm btn-outline btn-error"
