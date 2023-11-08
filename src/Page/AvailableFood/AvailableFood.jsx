@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import FeaturedFood from "../../Components/FeatureFoods/FeaturedFood";
-import useFoods from "../../Hooks/useFoods";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AvailableFood = () => {
   document.title = "shareSurplus | Available Food";
-  const Loadfoods = useFoods();
-  const [foods, setFoods] = useState(Loadfoods);
-  const [filtertext, setFilterText] = useState("");
+  const [foods, setFoods] = useState([]);
   const [searchText, setSearchText] = useState("");
   const axiosSecure = useAxiosSecure();
 
@@ -22,21 +19,18 @@ const AvailableFood = () => {
       setFoods(res.data);
     });
   }, [searchText, axiosSecure]);
-  const handleOnChange = (event) => {
-    const selectedOption = event.target.value;
-    setFilterText(selectedOption);
-    if (filtertext === "old") {
-      const filter = foods?.sort(
-        (a, b) => new Date(a.expiredate) - new Date(b.expiredate)
-      );
-      setFoods(filter);
-    } else {
-      return foods;
-    }
+
+  const handlefilterFoods = () => {
+    const sortedFoods = [...foods].sort(
+      (a, b) => new Date(b.expiredate) - new Date(a.expiredate)
+    );
+    setFoods(sortedFoods);
   };
   return (
     <div className="my-5">
-      <h1 className="text-3xl logo mx-2 lg:mx-0">Available Food: {foods.length}</h1>
+      <h1 className="text-3xl logo mx-2 lg:mx-0">
+        Available Food: {foods.length}
+      </h1>
       {/* Search Form Start Here  */}
       <div className="my-3 text-center mx-2 lg:mx-0">
         <form onSubmit={handleSearchFoods} className="join">
@@ -68,15 +62,12 @@ const AvailableFood = () => {
       </div>
       <div className="text-center lg:text-right">
         <span className="text-lg logo">Fiter By Expire:</span>{" "}
-        <select
-          value={filtertext}
-          onChange={handleOnChange}
-          name="filter"
-          className="select select-error max-w-xs logo"
+        <span
+          onClick={handlefilterFoods}
+          className="text-error cursor-pointer hover:bg-emerald-200 py-1 px-2 hover:text-black duration-300 rounded select-none"
         >
-          <option value="0">Default</option>
-          <option value="2">More Old</option>
-        </select>
+          Expire soon
+        </span>
       </div>
       {/* Search Form End Here  */}
       {foods.length === 0 ? (

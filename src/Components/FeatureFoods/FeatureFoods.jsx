@@ -7,10 +7,10 @@ const FeatureFoods = () => {
   const [featuredFoods, setFeaturedFoods] = useState([]);
   useEffect(() => {
     axiosSecure.get("/foods").then((res) => {
-      // const fiterbyFoodQuantity = res.data.sort(
-      //   (item1, item2) => item1.foodquantity - item2.foodquantity
-      // );
-      setFeaturedFoods(res.data.slice(0, 6));
+      const fiterbyFoodQuantity = res.data.sort(
+        (item1, item2) => item2.foodquantity - item1.foodquantity
+      );
+      setFeaturedFoods(fiterbyFoodQuantity.slice(0, 6));
     });
   }, [axiosSecure]);
   return (

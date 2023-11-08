@@ -11,6 +11,7 @@ const FeaturedFood = ({ food }) => {
     expiredate,
     additionalnotes,
     foodstatus,
+    foodquantity
   } = food;
   return (
     <div className="shadow p-3 rounded-lg">
@@ -38,7 +39,7 @@ const FeaturedFood = ({ food }) => {
       <div className="my-3">
         <div className="flex gap-10">
           <h2 className="text-lg">
-            <span className="font-medium">Food Quantity:</span> 34 person
+            <span className="font-medium">Food Quantity:</span> {foodquantity} person
           </h2>
           <h2 className="text-lg">
             <span className="font-medium">Expire in:</span> {expiredate}
