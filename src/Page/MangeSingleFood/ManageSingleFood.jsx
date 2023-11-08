@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ManageSingleFood = () => {
   const food = useLoaderData();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const handleUpdateStatus = (id) => {
     const foodstatus = { foodstatus: "delivered" };
     axiosSecure
@@ -18,6 +19,34 @@ const ManageSingleFood = () => {
       .catch(() => {
         swal("Opps!", "Something weng wrong! try again", "error");
       });
+  };
+
+  const handleFoodRequestDelete = (id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axiosSecure
+          .delete(`/rqFoods/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              swal("Poof! Food Request has been deleted!", {
+                icon: "success",
+              });
+              navigate("/manage-food");
+            }
+          })
+          .catch(() => {
+            swal("Opps!", "Something went wrong! try again", { icon: "error" });
+          });
+      } else {
+        swal("Food Request is safe!");
+      }
+    });
   };
   return (
     <div className="my-7">
@@ -46,7 +75,12 @@ const ManageSingleFood = () => {
             >
               Delivery
             </button>
-            <button className="btn btn-sm btn-warning">Cancle Request</button>
+            <button
+              onClick={() => handleFoodRequestDelete(food._id)}
+              className="btn btn-sm btn-warning"
+            >
+              Cancle Request
+            </button>
           </div>
         </div>
       </div>
