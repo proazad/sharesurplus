@@ -1,8 +1,16 @@
-# React + Vite
+#shareSurplus.org
+ [@Client Side Link Surge ](https://sharesurplus.surge.sh/)
+ [@Client Side Link Firebase  ](https://sharesurplus.surge.sh/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#All Features of This Website 
+- Any one can be member of this site
+- Any member can add Food for sharing
+- any member can request for foods
+- but own food request not possible
+- If one food is requested another person can't request for this food 
 
-Currently, two official plugins are available:
+- Member Manage and watch track of Requested Food
+- Food Requester can be Delete own request
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Member Can be Manage, Update, Delete Own Added Food
+- and if another person request for her/him food he/she can change food status or cancle request 
