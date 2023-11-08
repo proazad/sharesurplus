@@ -7,7 +7,6 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const MyFoodRequest = () => {
   document.title = "shareSurplus | Food Request";
   const [foods, setFoods] = useState([]);
-  const ontheway = foods?.filter((food) => food.foodstatus === "ontheway");
   const available = foods?.filter((food) => food.foodstatus === "available");
   const delivered = foods?.filter((food) => food.foodstatus === "delivered");
   const { user } = useAuth();
@@ -43,31 +42,28 @@ const MyFoodRequest = () => {
   };
   return (
     <div className="my-5 ">
-      {available.length > 0 ? (
-        <h1 className="text-4xl font-bold text-cente logo">
-          You have <span className="text-orange-600">{available.length}</span>{" "}
-          Food Request
-        </h1>
-      ) : (
-        <h1 className="text-4xl text-cente logo">You have no Food Request</h1>
-      )}
-      {ontheway.length > 0 && (
-        <h1 className="text-xl font-bold text-cente logo">
-          You have <span className="text-orange-600">{ontheway.length}</span>{" "}
-          Food On the way
-        </h1>
-      )}
-      {delivered.length > 0 && (
-        <h1 className="text-xl font-bold text-cente logo">
-          <span className="text-orange-600">
-            {delivered.length}
-            {delivered.length < 2 ? " time" : " times"}{" "}
-          </span>{" "}
-          You Accepted Food from request
-        </h1>
-      )}
+      <div className="mx-2 lg:mx-0">
+        {available.length > 0 ? (
+          <h1 className="text-4xl font-bold text-cente logo">
+            You have <span className="text-orange-600">{available.length}</span>{" "}
+            Food Request
+          </h1>
+        ) : (
+          <h1 className="text-4xl text-cente logo">You have no Food Request</h1>
+        )}
+
+        {delivered.length > 0 && (
+          <h1 className="text-xl font-bold text-cente logo">
+            <span className="text-orange-600">
+              {delivered.length}
+              {delivered.length < 2 ? " time" : " times"}{" "}
+            </span>{" "}
+            You Accepted Food from request
+          </h1>
+        )}
+      </div>
       <div className="my-5">
-        <h1 className="text-xl">All Requested Foods</h1>
+        <h1 className="text-xl mx-2 lg:mx-0">All Requested Foods</h1>
         <div className="overflow-x-auto">
           {foods.length === 0 ? (
             <div className="flex h-96 w-full items-center justify-center">

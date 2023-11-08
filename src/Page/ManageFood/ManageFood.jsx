@@ -41,7 +41,7 @@ const ManageFood = () => {
   };
   return (
     <div className="my-10">
-      <h1 className="text-4xl logo mb-5 font-semibold">
+      <h1 className="text-4xl logo mb-5 font-semibold mx-2 lg:mx-0">
         Manage My Foods:{foods.length}
       </h1>
       {foods.length === 0 ? (

@@ -50,10 +50,10 @@ const AddFood = () => {
         Add a New Food
       </h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
-        <div className="px-5">
+        <div className="px-5 flex items-center justify-center">
           <img src={img} alt="" />
         </div>
-        <div className="px-5 lg:px-16">
+        <div className="px-5 md:px-16">
           <form onSubmit={handleAddNewFood}>
             {/* Food Name  */}
             <div className="form-control mt-5">

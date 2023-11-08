@@ -18,7 +18,7 @@ const FeaturedFood = ({ food }) => {
         <img
           src={foodimage}
           alt={foodname}
-          className="rounded-lg h-70 lg:h-80 w-full"
+          className="rounded-lg h-70 md:h-48 lg:h-80 w-full"
           draggable="false"
         />
         <span className="absolute top-2 right-5  px-2 py-1 capitalize bg-orange-500 text-white">

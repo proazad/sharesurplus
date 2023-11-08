@@ -36,21 +36,21 @@ const AvailableFood = () => {
   };
   return (
     <div className="my-5">
-      <h1 className="text-3xl logo">Available Food: {foods.length}</h1>
+      <h1 className="text-3xl logo mx-2 lg:mx-0">Available Food: {foods.length}</h1>
       {/* Search Form Start Here  */}
-      <div className="my-3 text-center">
+      <div className="my-3 text-center mx-2 lg:mx-0">
         <form onSubmit={handleSearchFoods} className="join">
           <div>
             <div className="">
               <input
-                className="input input-bordered join-item w-96"
+                className="input input-bordered input-error join-item w-96"
                 placeholder="Search"
                 name="search"
               />
             </div>
           </div>
           <div className="indicator">
-            <button className="btn join-item">Search</button>
+            <button className="btn join-item btn-error">Search</button>
           </div>
         </form>
         {searchText && (
@@ -66,7 +66,7 @@ const AvailableFood = () => {
           </>
         )}
       </div>
-      <div className="text-right">
+      <div className="text-center lg:text-right">
         <span className="text-lg logo">Fiter By Expire:</span>{" "}
         <select
           value={filtertext}
