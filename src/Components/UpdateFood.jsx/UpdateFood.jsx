@@ -15,11 +15,13 @@ const UpdateFood = () => {
     expiredate,
     foodquantity,
     additionalnotes,
+    foodstatus,
   } = loadedFood;
   const handleUpdateFood = (event) => {
     event.preventDefault();
     const form = new FormData(event.target);
     const foodname = form.get("foodname").trim();
+    const foodstatus = form.get("foodstatus").trim();
     const foodimage = form.get("foodimage").trim();
     const pickuplocation = form.get("pickuplocation").trim();
     const expiredate = form.get("expiredate").trim();
@@ -32,6 +34,7 @@ const UpdateFood = () => {
       expiredate,
       foodquantity,
       additionalnotes,
+      foodstatus,
     };
     axiosSecure
       .patch(`/foodupdate/${_id}`, updateFood)
@@ -58,6 +61,19 @@ const UpdateFood = () => {
           </h3>
 
           <form onSubmit={handleUpdateFood}>
+            {/* Food Status  */}
+            <div className="form-control mt-5">
+              <label htmlFor="foodname">
+                <span className="label-text">Food Status</span>
+              </label>
+              <input
+                type="text"
+                name="foodstatus"
+                id="foodstatus"
+                defaultValue={foodstatus}
+                className="input input-bordered input-error"
+              />
+            </div>
             {/* Food Name  */}
             <div className="form-control mt-5">
               <label htmlFor="foodname">

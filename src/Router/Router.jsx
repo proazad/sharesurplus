@@ -72,7 +72,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/rqFoods/${params.id}`);
+          return fetch(`http://localhost:5000/foods/${params.id}`);
         },
       },
       {

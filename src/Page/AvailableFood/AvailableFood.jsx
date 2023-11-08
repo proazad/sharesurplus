@@ -16,7 +16,10 @@ const AvailableFood = () => {
 
   useEffect(() => {
     axiosSecure.get(`/foods?s=${searchText}`).then((res) => {
-      setFoods(res.data);
+      const available = res.data.filter(
+        (item) => item.foodstatus === "available"
+      );
+      setFoods(available);
     });
   }, [searchText, axiosSecure]);
 

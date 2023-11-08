@@ -7,7 +7,10 @@ const FeatureFoods = () => {
   const [featuredFoods, setFeaturedFoods] = useState([]);
   useEffect(() => {
     axiosSecure.get("/foods").then((res) => {
-      const fiterbyFoodQuantity = res.data.sort(
+      const available = res.data.filter(
+        (item) => item.foodstatus === "available"
+      );
+      const fiterbyFoodQuantity = available.sort(
         (item1, item2) => item2.foodquantity - item1.foodquantity
       );
       setFeaturedFoods(fiterbyFoodQuantity.slice(0, 6));

@@ -16,6 +16,7 @@ const ManageFood = () => {
       setFoods(res.data);
     });
   }, [axiosSecure, url]);
+  
   const handleFoodDelete = (id) => {
     swal({
       title: "Are you sure?",

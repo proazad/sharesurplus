@@ -58,31 +58,19 @@ const SingleFoodView = () => {
         <p className="text-xl mb-5">{additionalnotes}</p>
       </div>
       <div className="my-10 text-center">
-        <button
-          onClick={() => document.getElementById("my_modal_5").showModal()}
-          className="btn bg-orange-600 text-white hover:text-orange-600"
-        >
-          Request for Food
-        </button>
+        {user?.email === donoremail || (
+          <button
+            onClick={() => document.getElementById("my_modal_5").showModal()}
+            className="btn bg-orange-600 text-white hover:text-orange-600"
+          >
+            Request for Food
+          </button>
+        )}
       </div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
-      {donoremail === user.email ? (
-        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-          <div className="modal-box">
-            <form method="dialog">
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                <span className="text-2xl">✕</span>
-              </button>
-            </form>
-            <h3 className="font-bold text-lg">
-              Sorry! You Can&apos;t Request for this food, this is your Food
-            </h3>
-          </div>
-        </dialog>
-      ) : (
-        <FoodRequstForm food={loadedFood} />
-      )}
+      <FoodRequstForm food={loadedFood} />
     </div>
+    
   );
 };
 
