@@ -29,18 +29,31 @@ const DataTable = ({ foods, handleFoodDelete }) => {
             </td>
             <td>{food.foodname}</td>
             <td>{food.expiredate}</td>
-            <td>{food?.foodstatus}</td>
-            <td className="flex gap-4">
-              <Link
-                to={`/manage/${food._id}`}
-                className="btn btn-sm btn-outline btn-error"
-                title="Manage Foods"
-              >
-                <AiOutlineFundView className="text-2xl" />
-              </Link>
+            <td>
+              {food?.foodstatus === "available" ? (
+                <span className="text-yellow-600 capitalize font-semibold">
+                  {food?.foodstatus}
+                </span>
+              ) : (
+                <span className="text-green-600 capitalize font-semibold">
+                  {food?.foodstatus}
+                </span>
+              )}
+            </td>
+            <td className="flex gap-4 justify-end">
+              {food.foodrequesttrack === true && (
+                <Link
+                  to={`/manage/${food._id}`}
+                  className="btn btn-sm btn-outline btn-primary"
+                  title="Manage Foods"
+                >
+                  <AiOutlineFundView className="text-2xl" />
+                </Link>
+              )}
+
               <Link
                 to={`/foodupdate/${food._id}`}
-                className="btn btn-sm btn-outline btn-error"
+                className="btn btn-sm btn-outline btn-info"
                 title="Update"
               >
                 <FaEdit className="text-2xl" />

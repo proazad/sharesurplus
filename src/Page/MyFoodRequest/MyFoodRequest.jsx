@@ -126,6 +126,7 @@ const MyFoodRequest = () => {
                   <th>Name</th>
                   <th>Expiry</th>
                   <th>Pickup Location</th>
+                  <th>Donor</th>
                   <th>Request Date</th>
                   <th>Donation</th>
                   <th>Status</th>

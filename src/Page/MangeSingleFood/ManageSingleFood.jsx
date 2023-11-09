@@ -8,7 +8,7 @@ const ManageSingleFood = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const [reqFood, setReqFood] = useState([]);
-
+  const [status, setStatus] = useState(null);
   useEffect(() => {
     axiosSecure.get(`/rqFoods/${food._id}`).then((res) => {
       setReqFood(res.data);
@@ -20,7 +20,14 @@ const ManageSingleFood = () => {
       .patch(`/foodstatus/${id}`, { foodstatus: "delivered" })
       .then((res) => {
         if (res.data.success) {
-          swal("Yah!", "Food Status Updated!", "success");
+          axiosSecure
+            .patch(`/reqfoodstatus/${id}`, { foodstatus: "delivered" })
+            .then((res) => {
+              if (res.data.success) {
+                swal("Yah!", "Food Status Updated!", "success");
+                setStatus("delivered");
+              }
+            });
         }
       })
       .catch(() => {
@@ -82,18 +89,29 @@ const ManageSingleFood = () => {
             <p>{reqFood.requesttime}</p>
           </div>
           <div className="flex gap-3">
-            <button
-              className="btn btn-sm btn-info"
-              onClick={() => handleUpdateStatus(food._id)}
-            >
-              Delivery
-            </button>
-            <button
-              onClick={() => handleFoodRequestDelete(reqFood._id)}
-              className="btn btn-sm btn-warning"
-            >
-              Cancle Request
-            </button>
+            {status === "delivered" || reqFood.foodstatus === "delivered" ? (
+              <>
+                <button className="btn btn-sm btn-success ">Delivered</button>
+                <button className="btn btn-sm btn-warning" disabled>
+                  Cancle Request
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className="btn btn-sm btn-info"
+                  onClick={() => handleUpdateStatus(food._id)}
+                >
+                  Delivery
+                </button>
+                <button
+                  onClick={() => handleFoodRequestDelete(reqFood._id)}
+                  className="btn btn-sm btn-warning"
+                >
+                  Cancle Request
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>

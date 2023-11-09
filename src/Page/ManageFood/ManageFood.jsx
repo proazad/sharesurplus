@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import DataTable from "./dataTable";
 import swal from "sweetalert";
+import { Link } from "react-router-dom";
 
 const ManageFood = () => {
   document.title = "shareSurplus | Manage Food";
@@ -16,7 +17,7 @@ const ManageFood = () => {
       setFoods(res.data);
     });
   }, [axiosSecure, url]);
-  
+
   const handleFoodDelete = (id) => {
     swal({
       title: "Are you sure?",
@@ -40,10 +41,14 @@ const ManageFood = () => {
       }
     });
   };
+  const count = foods.filter((item) => item.foodrequesttrack === true);
   return (
     <div className="my-10">
       <h1 className="text-4xl logo mb-5 font-semibold mx-2 lg:mx-0">
         Manage My Foods:{foods.length}
+      </h1>
+      <h1 className="text-4xl logo mb-5 font-semibold mx-2 lg:mx-0">
+        Food Request Pending : <Link to="/request-pendinglist" className="text-blue-500">{count.length}</Link>
       </h1>
       {foods.length === 0 ? (
         <div className="flex h-96 w-full items-center justify-center">

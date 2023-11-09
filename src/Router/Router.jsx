@@ -12,6 +12,7 @@ import Registration from "../Page/Registration/Registration";
 import Signin from "../Page/Registration/Signin";
 import SingleFoodView from "../Page/SingleFoodView/SingleFoodView";
 import PrivateRouter from "./PrivateRouter";
+import RequestPendingList from "../Page/RequestPendingList/RequestPendingList";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Registration />,
+      },
+      {
+        path: "/request-pendinglist",
+        element: <RequestPendingList />,
       },
     ],
   },

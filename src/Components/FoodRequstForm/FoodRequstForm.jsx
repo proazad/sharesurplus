@@ -6,7 +6,6 @@ import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 const FoodRequstForm = ({ food }) => {
   const { user } = useAuth();
-  console.log(user);
   const currentDateTime = useCurrentDateTime();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -35,8 +34,17 @@ const FoodRequstForm = ({ food }) => {
       .post("/rqFoods", foodRequest)
       .then((res) => {
         if (res.data.insertedId) {
-          swal("Cool!", "Food Request Submited!", "success");
-          navigate("/food-request");
+          axiosSecure
+            .patch(`/foodrequesttrack/${food._id}`, {
+              foodrequesttrack: true,
+            })
+            .then((res) => {
+              if (res.data) {
+                console.log(res.data);
+                swal("Cool!", "Food Request Submited!", "success");
+                navigate("/food-request");
+              }
+            });
         }
       })
       .catch((error) => {
