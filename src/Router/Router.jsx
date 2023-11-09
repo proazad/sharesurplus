@@ -8,12 +8,12 @@ import Home from "../Page/Home/Home";
 import ManageFood from "../Page/ManageFood/ManageFood";
 import ManageSingleFood from "../Page/MangeSingleFood/ManageSingleFood";
 import MyFoodRequest from "../Page/MyFoodRequest/MyFoodRequest";
+import Profile from "../Page/Profile/Profile";
 import Registration from "../Page/Registration/Registration";
 import Signin from "../Page/Registration/Signin";
+import RequestPendingList from "../Page/RequestPendingList/RequestPendingList";
 import SingleFoodView from "../Page/SingleFoodView/SingleFoodView";
 import PrivateRouter from "./PrivateRouter";
-import RequestPendingList from "../Page/RequestPendingList/RequestPendingList";
-import Profile from "../Page/Profile/Profile";
 const router = createBrowserRouter([
   {
     path: "/",

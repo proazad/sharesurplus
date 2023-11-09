@@ -27,7 +27,7 @@ const MainLayout = () => {
       </label>
       <ul
         tabIndex={0}
-        className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 top-10"
+        className="mt-3 z-[99] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 top-10"
       >
         <li>
           <a className="justify-between">{user?.displayName}</a>
