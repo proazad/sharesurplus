@@ -16,3 +16,22 @@
 .iWchow {
   display: none;
 }
+
+/* CSS for Masonry Layout */
+.masonry-grid {
+  display: flex;
+  margin-left: -16px; /* Adjust this value according to your gutter size */
+  width: auto;
+}
+
+.masonry-grid-column {
+  padding-left: 16px; /* Adjust this value according to your gutter size */
+  background-clip: padding-box;
+}
+
+/* Responsive Layout */
+@media (max-width: 767px) {
+  .masonry-grid {
+    margin-left: 0;
+  }
+}

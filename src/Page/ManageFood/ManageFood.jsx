@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import swal from "sweetalert";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import DataTable from "./dataTable";
-import swal from "sweetalert";
-import { Link } from "react-router-dom";
+import DataTable from "./DataTable";
 
 const ManageFood = () => {
   document.title = "shareSurplus | Manage Food";
@@ -48,7 +48,10 @@ const ManageFood = () => {
         Manage My Foods:{foods.length}
       </h1>
       <h1 className="text-4xl logo mb-5 font-semibold mx-2 lg:mx-0">
-        Food Request Pending : <Link to="/request-pendinglist" className="text-blue-500">{count.length}</Link>
+        Food Request Pending :{" "}
+        <Link to="/request-pendinglist" className="text-blue-500">
+          {count.length}
+        </Link>
       </h1>
       {foods.length === 0 ? (
         <div className="flex h-96 w-full items-center justify-center">

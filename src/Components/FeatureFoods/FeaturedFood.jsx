@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const FeaturedFood = ({ food }) => {
@@ -14,7 +15,13 @@ const FeaturedFood = ({ food }) => {
     foodquantity,
   } = food;
   return (
-    <div className="shadow p-3 rounded-lg">
+    <motion.div
+      className="shadow p-3 rounded-lg"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ scale: 1.05, backgroundColor: "#FFA500" }}
+    >
       <div className="relative">
         <img
           src={foodimage}
@@ -63,11 +70,12 @@ const FeaturedFood = ({ food }) => {
           </button>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export default FeaturedFood;
 FeaturedFood.propTypes = {
   food: PropTypes.object,
 };
+
+export default FeaturedFood;
