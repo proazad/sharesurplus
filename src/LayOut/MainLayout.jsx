@@ -1,9 +1,10 @@
 import { AiOutlineMenu } from "react-icons/ai";
+import { FaUserAlt } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
-import logo from "../assets/a.png";
 import useAuth from "../Hooks/useAuth";
+import logo from "../assets/a.png";
 const MainLayout = () => {
-  const { user, userLogOut } = useAuth();
+  const { user, userLogOut, loading } = useAuth();
   const handleUserLogOut = () => {
     userLogOut()
       .then(() => {
@@ -13,6 +14,33 @@ const MainLayout = () => {
         console.log(error);
       });
   };
+  const userprofile = (
+    <div className="dropdown dropdown-end p-0">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          {loading ? (
+            <FaUserAlt className="text-2xl" />
+          ) : (
+            <img src={user?.photoURL} />
+          )}
+        </div>
+      </label>
+      <ul
+        tabIndex={0}
+        className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 top-10"
+      >
+        <li>
+          <a className="justify-between">{user?.displayName}</a>
+        </li>
+        <li>
+          <Link to="/profile">Profile</Link>
+        </li>
+        <li>
+          <a onClick={handleUserLogOut}>Logout</a>
+        </li>
+      </ul>
+    </div>
+  );
   const navlinks = (
     <>
       <li>
@@ -51,6 +79,7 @@ const MainLayout = () => {
           </NavLink>
         )}
       </li>
+      {user?.email && <li>{userprofile}</li>}
     </>
   );
   return (
@@ -79,7 +108,7 @@ const MainLayout = () => {
               </Link>
             </div>
             <div className="flex-none hidden lg:block">
-              <ul className="menu menu-horizontal">
+              <ul className="menu menu-horizontal items-center">
                 {/* Navbar menu content here */}
                 {navlinks}
               </ul>

@@ -1,10 +1,31 @@
+import { useEffect, useState } from "react";
 import { AiOutlineFundView } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import useFoods from "../../Hooks/useFoods";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const RequestPendingList = () => {
-  const foods = useFoods();
+  const { user, loading } = useAuth();
+  const axiosSeceure = useAxiosSecure();
+  const [foods, setFoods] = useState([]);
+  useEffect(() => {
+    axiosSeceure.get(`/myfoods?email=${user.email}`).then((res) => {
+      setFoods(res.data);
+      const requestFoods = res?.data.filter(
+        (food) => food.foodrequesttrack === true
+      );
+      setFoods(requestFoods);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [axiosSeceure, user.email]);
   const pendings = foods.filter((foods) => foods.foodrequesttrack === true);
+  if (loading) {
+    return (
+      <div className="flex h-96 w-full items-center justify-center">
+        <span className="loading loading-lg loading-spinner text-secondary"></span>
+      </div>
+    );
+  }
   return (
     <div className="my-10">
       <h1 className="text-4xl logo font-bold">

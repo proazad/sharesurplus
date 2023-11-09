@@ -28,11 +28,13 @@ const AuthProvider = ({ children }) => {
   };
   //   Update User Profile
   const profileUpdate = (name, photo) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
     });
   };
+  console.log(user);
   //   User Sign in with Email & Password
   const loginUser = (email, password) => {
     setLoading(true);
@@ -40,11 +42,13 @@ const AuthProvider = ({ children }) => {
   };
   // User Sign/Signup With Google
   const googleSignin = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // User Signin/Sing up with Github
   const githubSignin = () => {
+    setLoading(true);
     return signInWithPopup(auth, githubProvider);
   };
   //   User Login Out

@@ -13,6 +13,7 @@ import Signin from "../Page/Registration/Signin";
 import SingleFoodView from "../Page/SingleFoodView/SingleFoodView";
 import PrivateRouter from "./PrivateRouter";
 import RequestPendingList from "../Page/RequestPendingList/RequestPendingList";
+import Profile from "../Page/Profile/Profile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -94,7 +95,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/request-pendinglist",
-        element: <RequestPendingList />,
+        element: (
+          <PrivateRouter>
+            <RequestPendingList />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRouter>
+            <Profile />
+          </PrivateRouter>
+        ),
       },
     ],
   },
