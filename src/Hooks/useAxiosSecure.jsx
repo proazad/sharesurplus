@@ -5,7 +5,7 @@ import swal from "sweetalert";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://sharesurplus-server.vercel.app",
   withCredentials: true,
 });
 const useAxiosSecure = () => {

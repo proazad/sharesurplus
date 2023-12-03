@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/react-table": "^8.10.7",
     "axios": "^1.6.0",
     "firebase": "^10.5.2",
     "framer-motion": "^10.16.4",
@@ -19,12 +18,11 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-elastic-carousel": "^0.11.5",
     "react-icons": "^4.11.0",
-    "react-masonry-css": "^1.0.16",
     "react-router-dom": "^6.18.0",
     "sort-by": "^0.0.2",
-    "sweetalert": "^2.1.2",
-    "swiper": "^11.0.4"
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

@@ -52,7 +52,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/foods/${params.id}`);
+          return fetch(`https://sharesurplus-server.vercel.app/foods/${params.id}`);
         },
       },
       {
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/foods/${params.id}`);
+          return fetch(`https://sharesurplus-server.vercel.appserver.vercel.app/foods/${params.id}`);
         },
       },
       {
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/foods/${params.id}`);
+          return fetch(`https://sharesurplus-server.vercel.app/foods/${params.id}`);
         },
       },
       {

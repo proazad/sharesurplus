@@ -1,35 +1,18 @@
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-import "./styles.css";
-
-// import required modules
+import Carousel from "react-elastic-carousel";
 import { Link } from "react-router-dom";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-
 const HomePageBanner = () => {
   return (
     <div className="my-10">
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
+      <Carousel
+        focusOnSelect={true}
+        itemsToShow={1}
+        enableAutoPlay={true}
+        autoPlaySpeed={5000}
+        easing="cubic-bezier(1,.15,.55,1.54)"
+        tiltEasing="cubic-bezier(0.110, 1, 1.000, 0.210)"
+        transitionMs={800}
       >
-        <SwiperSlide className="relative flex items-center justify-center">
+        <div className="relative flex items-center justify-center">
           <img
             src="https://i.ibb.co/YQsrtCn/banner02.jpg"
             alt=""
@@ -49,9 +32,9 @@ const HomePageBanner = () => {
               Join With us
             </Link>
           </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="relative flex items-center justify-center">
+        </div>
+        {/* Slider 2 */}
+        <div className="relative flex items-center justify-center">
           <img
             src="https://i.ibb.co/Y082sbk/banner03.jpg"
             alt=""
@@ -71,9 +54,9 @@ const HomePageBanner = () => {
               View Foods
             </Link>
           </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="relative flex items-center justify-center">
+        </div>
+        {/* Slider 3 */}
+        <div className="relative flex items-center justify-center">
           <img
             src="https://i.ibb.co/vQVCr9T/banner04.jpg"
             alt=""
@@ -93,9 +76,9 @@ const HomePageBanner = () => {
               Join with us
             </Link>
           </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="relative flex items-center justify-center">
+        </div>
+        {/* Slider 4 */}
+        <div className="relative flex items-center justify-center">
           <img
             src="https://i.ibb.co/Gc28zNJ/banner05.jpg"
             alt=""
@@ -115,8 +98,9 @@ const HomePageBanner = () => {
               Add Foods
             </Link>
           </div>
-        </SwiperSlide>
-        <SwiperSlide className="relative flex items-center justify-center">
+        </div>
+        {/* Slider 5 */}
+        <div className="relative flex items-center justify-center">
           <img
             src="https://i.ibb.co/mG1DwK6/banner06.jpg"
             alt=""
@@ -136,8 +120,9 @@ const HomePageBanner = () => {
               View Foods
             </Link>
           </div>
-        </SwiperSlide>
-        <SwiperSlide className="relative flex items-center justify-center">
+        </div>
+        {/* Slider 6 */}
+        <div className="relative flex items-center justify-center">
           <img
             src="https://i.ibb.co/Wn22FYP/banner07.jpg"
             alt=""
@@ -157,8 +142,8 @@ const HomePageBanner = () => {
               View Foods
             </Link>
           </div>
-        </SwiperSlide>
-      </Swiper>
+        </div>
+      </Carousel>
     </div>
   );
 };
