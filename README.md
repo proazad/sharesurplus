@@ -22,7 +22,7 @@
 - and if another person request for her/him food he/she can change food status or cancle request
 
 # Technology which used in this project
--React JS
--Express JS
--MongoDB
--Tailwind CSS
+ - React JS
+ - Express JS
+ - MongoDB
+ - Tailwind CSS
